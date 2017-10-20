@@ -1,18 +1,18 @@
 package com.mmc.data.structure.tableStackQueue.system.test.stack;
 
-import com.mmc.data.structure.tableStackQueue.system.stack.AutoArrayStack;
+import com.mmc.data.structure.tableStackQueue.system.stack.AutoLinkedStack;
 import org.junit.Test;
 
 /**
  * 包 名：com.mmc.data.structure.tableStackQueue.system.test.stack
- * 类 名: StackArrayComputerTest
- * 描 述:
+ * 类 名: AutoLinkedStackTest
+ * 描 述: 链表实现栈测试
  * 作 者: GW
- * 创 建： 2017-10-19 15:20
+ * 创 建： 2017-10-20 15:34
  * <p>
  * 历 史: (版本) 作者 时间 注释
  */
-public class StackArrayComputerTest {
+public class AutoLinkedStackTest {
 
     /**
      * 测试入口
@@ -20,7 +20,7 @@ public class StackArrayComputerTest {
     @Test
     public void test() {
         String computerParam = "5+4*2*(2+3)+[3+(2+1)*4]";
-        AutoArrayStack<String> stack = new AutoArrayStack<String>();
+        AutoLinkedStack<String> stack = new AutoLinkedStack<String>();
 
         System.out.println("原始input data ： " + computerParam);
 
@@ -30,7 +30,7 @@ public class StackArrayComputerTest {
         int length = array.length;
         String convertStr = "";
         StringBuffer sb = new StringBuffer();
-        AutoArrayStack<String> symob = new AutoArrayStack<String>();
+        AutoLinkedStack<String> symob = new AutoLinkedStack<String>();
         // a + b * c + (d * e + f) * g
         // 5+4*2*(2+3)+[3+(2+1)*4]
         for (int i = 0; i < length; i++) {
@@ -93,7 +93,7 @@ public class StackArrayComputerTest {
             throw new IllegalArgumentException();
         }
         int length = param.length();
-        AutoArrayStack<Integer> computer = new AutoArrayStack<Integer>();
+        AutoLinkedStack<Integer> computer = new AutoLinkedStack<Integer>();
         for (int i = 0; i < length; i++) {
             char c = param.charAt(i);
             int d1 = 0;

@@ -12,6 +12,10 @@ package com.mmc.data.structure.tableStackQueue.system.stack;
 public class AutoArrayStack<T> {
 
     /**
+     * 数组特性：
+     *      一组存储有序的数据集合
+     *      查询特定下标数据速度快 O(1)
+     *      中间插入数据性能低，O(N/2)
      * 栈特性：
      *      LIFO（后进先出）原则
      */
@@ -79,7 +83,7 @@ public class AutoArrayStack<T> {
             return null;
         }
         rangeCheck(top);
-        int index = top;
+        int index = top - 1;
         T old = elements[index];
         elements[index] = null;
         peek--;
@@ -114,7 +118,7 @@ public class AutoArrayStack<T> {
         if (isEmpty()) {
             return null;
         }
-        return get(top);
+        return get(top - 1);
     }
 
     /**
@@ -125,7 +129,6 @@ public class AutoArrayStack<T> {
     public T get(int index) {
         rangeCheck(index);
         T oldElement = elements[index];
-        elements[index] = null;
         return oldElement;
     }
 
