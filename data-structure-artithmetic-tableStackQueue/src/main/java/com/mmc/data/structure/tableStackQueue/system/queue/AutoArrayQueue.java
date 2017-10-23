@@ -18,9 +18,9 @@ public class AutoArrayQueue<T> {
      *      FIFO（先进先出）原则
      */
 
-    private final static int DEFAULT_CAPACITY = 10;
+    private final static int DEFAULT_CAPACITY = 100;
     private int size;
-    private int head;
+    private int tail;
     private int front;
 
     private T[] elements;
@@ -33,8 +33,50 @@ public class AutoArrayQueue<T> {
     public AutoArrayQueue(int capacity) {
         elements = (T[])new Object[capacity];
         size = 0;
-        head = -1;
+        tail = -1;
         front = 0;
+    }
+
+
+    /**
+     * 获取元素
+     * @return
+     */
+    public T poll() {
+        int index = front;
+        T temp = elements[front++];
+        elements[index] =  null;
+        if (front == elements.length) {
+            front = 0;
+        }
+        size--;
+        return temp;
+    }
+
+
+    /**
+     * 添加元素
+     * @param element
+     */
+    public void push(T element) {
+        if (tail == elements.length - 1) {
+            tail = -1;
+        }
+
+        elements[++tail] = element;
+        size++;
+    }
+
+    /**
+     * 删除元素
+     */
+    public T remove() {
+        T temp = elements[front++];
+        if (front == elements.length) {
+            front = 0;
+        }
+        size--;
+        return temp;
     }
 
     /**
@@ -64,7 +106,7 @@ public class AutoArrayQueue<T> {
     public void clear() {
         T[] newElements = (T[])new Object[DEFAULT_CAPACITY];
         elements = newElements;
-        head = -1;
+        tail = -1;
         front = 0;
         size = 0;
     }
