@@ -48,6 +48,23 @@ public class AutoLinkedList<T> implements Iterable<T>{
     }
 
     /**
+     * 是否包含
+     * @param data
+     * @return
+     */
+    public boolean contains(T data) {
+        Node<T> current = first;
+        while (current != null) {
+            T ele = current.value;
+            if (ele == data || ele.equals(data)) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
+    /**
      * 指定位置插入元素
      * @param index
      * @param element
@@ -125,7 +142,7 @@ public class AutoLinkedList<T> implements Iterable<T>{
             throw new IndexOutOfBoundsException();
         }
 
-        if (index < size() / 2) {
+        if (index < size() >> 1) {
             p = first;
             for (int i = 0; i < index; i++) {
                 p = p.next;

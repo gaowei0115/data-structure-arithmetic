@@ -57,8 +57,13 @@ public class TrainSeason32 {
 
 
 
-        doubleLinkedList.swap(3);
+        doubleLinkedList.swap(1);
 
         System.out.println(doubleLinkedList);
+
+        while (!doubleLinkedList.isEmpty()) {
+            System.out.println(doubleLinkedList.pollFirst());
+//            System.out.println(doubleLinkedList.pollLast());
+        }
     }
 }

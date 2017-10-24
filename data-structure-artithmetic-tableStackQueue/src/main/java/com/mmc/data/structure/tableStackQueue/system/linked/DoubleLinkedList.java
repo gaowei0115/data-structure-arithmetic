@@ -55,6 +55,36 @@ public class DoubleLinkedList<T> {
     }
 
     /**
+     *
+     * @return
+     */
+    public T pollFirst() {
+        final Node<T> f = first;
+        if (f != null) {
+            T data = f.data;
+            first = first.next;
+            size--;
+            return data;
+        }
+        return null;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public T pollLast() {
+        final Node<T> l = last;
+        if (l != null) {
+            T data = l.data;
+            last = last.pre;
+            size--;
+            return data;
+        }
+        return null;
+    }
+
+    /**
      * IS EMPTY
      * @return
      */
@@ -75,42 +105,56 @@ public class DoubleLinkedList<T> {
      * @param index
      */
     public void swap(int index) {
-        final Node<T> n = node(index);
-        if (n != null) {
-            Node<T> next = n.next;
-            if (next == null) {
-                // 末尾节点
-                Node<T> pre = n.pre;
+        // 目标交换节点
+        final Node<T> targetNode = node(index);
+        if (targetNode != null) {
+            if (targetNode.next == null) {
+                // 尾部节点 -- 向前交换
+                Node<T> pre = targetNode.pre;
                 if (pre != null) {
-                    Node<T> pre1 = pre.pre;
-                    if (pre1 == null) {
-                        n.next = pre;
-                        pre.pre = n;
-                        n.pre = null;
+                    Node<T> prep = pre.pre;
+                    if (prep == null) {
                         pre.next = null;
+                        pre.pre = targetNode;
+                        targetNode.next = pre;
+                        targetNode.pre = null;
                     } else {
-                        pre1.next = n;
-                        n.pre = pre1;
-                        n.next = pre;
                         pre.next = null;
+                        pre.pre = targetNode;
+                        targetNode.next = pre;
+                        targetNode.pre = prep;
+                        prep.next = targetNode;
                     }
                     last = pre;
                 }
-            } else {
-                Node<T> pre = n.pre;
-                if (pre == null) {
-                    n.next = next.next;
-                    n.pre = next;
-                    next.next = n;
-                    next.pre = null;
+            } else if (targetNode.pre == null) {
+                // 头部节点
+                Node<T> next = targetNode.next;
+                if (next != null) {
+                    Node<T> nextn = next.next;
+                    if (nextn == null) {
+                        targetNode.next = null;
+                        targetNode.pre = next;
+                        next.next = targetNode;
+                        next.pre = null;
+                    } else {
+                        targetNode.next = nextn;
+                        targetNode.pre = next;
+                        nextn.pre = targetNode;
+                        next.next = targetNode;
+                        next.pre = null;
+                    }
                     first = next;
-                } else {
-                    n.next = next.next;
-                    n.pre = next;
-                    next.next = n;
-                    next.pre = pre;
-                    pre.next = next;
                 }
+            } else {
+                // 中间节点 -- 后续
+                Node<T> next = targetNode.next;
+                Node<T> pre = targetNode.pre;
+                targetNode.next = next.next;
+                targetNode.pre = next;
+                next.next = targetNode;
+                next.pre = pre;
+                pre.next = next;
             }
         }
     }
