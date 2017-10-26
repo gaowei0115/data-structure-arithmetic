@@ -95,6 +95,93 @@ public class SingleLinkedList<T> {
     }
 
     /**
+     * 不包含则添加元素
+     * @param data
+     */
+    public void putIfAbsract(T data) {
+        if (!contain(data)) {
+            push(data);
+        }
+    }
+
+    /**
+     *
+     * @param data
+     */
+    public void removeIfAbstract(T data) {
+        int position = -1;
+        Node<T> current = first;
+        boolean isExist = false;
+        if (data == null) {
+            while (current != null) {
+                position++;
+                if (current.data == null) {
+                    isExist = true;
+                    break;
+                }
+                current = current.next;
+            }
+        } else {
+            while (current != null) {
+                position++;
+                if (data.equals(current.data)) {
+                    isExist = true;
+                    break;
+                }
+                current = current.next;
+            }
+        }
+        if (position >= 0 && isExist) {
+            if (position == 0) {
+                Node<T> c = first;
+                first = first.next;
+                c.next = null;
+                c.data = null;
+            } else {
+                Node<T> pre = node(position - 1);
+                pre.next = current.next;
+                current.next = null;
+                current.data = null;
+            }
+            size--;
+        }
+    }
+
+    /**
+     * 是否包含节点
+     * @param data
+     * @return
+     */
+    public boolean contain(T data) {
+        return node(data) != null;
+    }
+
+    /**
+     * 验证节点是否存在
+     * @param data
+     * @return
+     */
+    public Node<T> node(T data) {
+        Node<T> current = first;
+        if (data == null) {
+            while (current != null) {
+                if (current.data == null) {
+                    return current;
+                }
+                current = current.next;
+            }
+        } else {
+            while (current != null) {
+                if (data.equals(current.data)) {
+                    return current;
+                }
+                current = current.next;
+            }
+        }
+        return null;
+    }
+
+    /**
      * 获取对应节点
      * @param index
      * @return
@@ -122,6 +209,26 @@ public class SingleLinkedList<T> {
             first.next = f;
         }
         size++;
+    }
+
+    /**
+     * 打印节点
+     */
+    public void print() {
+        StringBuffer sb = new StringBuffer();
+        Node<T> current = first;
+        sb.append("nodes [");
+        int i = 0;
+        while (current != null) {
+            sb.append(current.data);
+            if (i != size - 1) {
+                sb.append(", ");
+            }
+            i++;
+            current = current.next;
+        }
+        sb.append("]");
+        System.out.println(sb.toString());
     }
 
     public int size() {

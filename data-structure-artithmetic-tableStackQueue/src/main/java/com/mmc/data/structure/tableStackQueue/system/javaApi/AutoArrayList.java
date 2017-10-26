@@ -69,6 +69,22 @@ public class AutoArrayList<T>  implements Iterable<T>{
     }
 
     /**
+     * 添加集合元素
+     * @param items
+     */
+    public void addAll(Iterable<? extends T> items) {
+        if (items == null) {
+            throw new IllegalArgumentException();
+        }
+
+        Iterator iterator = items.iterator();
+
+        while (iterator.hasNext()) {
+            add((T)iterator.next());
+        }
+    }
+
+    /**
      * add  index element
      * @param index
      * @param element
