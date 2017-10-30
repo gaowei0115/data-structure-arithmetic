@@ -1,6 +1,7 @@
 package com.mmc.data.structure.tableStackQueue.system.javaApi;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 /**
@@ -149,6 +150,37 @@ public class AutoArrayList<T>  implements Iterable<T>{
      */
     public int size() {
         return size;
+    }
+
+
+    /**
+     *
+     */
+    public class AutoListIter extends AutoArrayList<T>.AutoArrayListIterator implements ListIterator<T> {
+
+        public boolean hasPrevious() {
+            return false;
+        }
+
+        public T previous() {
+            return null;
+        }
+
+        public int nextIndex() {
+            return 0;
+        }
+
+        public int previousIndex() {
+            return 0;
+        }
+
+        public void set(T t) {
+
+        }
+
+        public void add(T t) {
+
+        }
     }
 
     /**

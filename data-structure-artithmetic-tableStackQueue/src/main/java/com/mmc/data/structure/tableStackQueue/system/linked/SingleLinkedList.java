@@ -1,5 +1,7 @@
 package com.mmc.data.structure.tableStackQueue.system.linked;
 
+import java.util.LinkedList;
+
 /**
  * 包 名：com.mmc.data.structure.tableStackQueue.system.linked
  * 类 名: SingleLinkedList
@@ -9,7 +11,7 @@ package com.mmc.data.structure.tableStackQueue.system.linked;
  * <p>
  * 历 史: (版本) 作者 时间 注释
  */
-public class SingleLinkedList<T> {
+public class SingleLinkedList<T extends Comparable> {
 
     /**
      * 单向链表
@@ -209,6 +211,29 @@ public class SingleLinkedList<T> {
             first.next = f;
         }
         size++;
+    }
+
+    /**
+     * 排序
+     */
+    public void sort() {
+        Node<T> current = first;
+        if (first != null) {
+            Node<T> next = first.next;
+            while (current != null) {
+                next = current.next;
+                while (current != next && next != null) {
+                    T v1 = current.data;
+                    T v2 = next.data;
+                    if (v1.compareTo(v2) > 0) {
+                        current.data = v2;
+                        next.data = v1;
+                    }
+                    next = next.next;
+                }
+                current = current.next;
+            }
+        }
     }
 
     /**
