@@ -9,6 +9,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>data-structure-artithmetic-tableStackQueue</module>
+        <module>data-structure-arithmetic-tree</module>
     </modules>
     <packaging>pom</packaging>
 
