@@ -19,7 +19,7 @@ public class QueueEvaluate {
         Stack<Integer> vals = new Stack<Integer>();
         int start = 0;
         int end = 1;
-        while (end < values.length()) {
+        while (end <= values.length()) {
             String v = values.substring(start, end);
             if ("+".equals(v)) {
                 ops.push(v);
@@ -32,18 +32,21 @@ public class QueueEvaluate {
             } else if ("(".equals(v)) {
                 ops.push(v);
             } else if (")".equals(v)) {
-                String op = ops.pop();
-                Integer i = vals.pop();
-                if ("+".equals(op)) {
-                    i = vals.pop() + i;
-                } else if ("-".equals(op)) {
-                    i = vals.pop() - i;
-                } else if ("/".equals(op)) {
-                    i = vals.pop() / i;
-                } else if ("*".equals(op)) {
-                    i = vals.pop() * i;
+
+                String op = null;
+                while (!"(".equals(op = ops.pop())) {
+                    Integer i = vals.pop();
+                    if ("+".equals(op)) {
+                        i = vals.pop() + i;
+                    } else if ("-".equals(op)) {
+                        i = vals.pop() - i;
+                    } else if ("/".equals(op)) {
+                        i = vals.pop() / i;
+                    } else if ("*".equals(op)) {
+                        i = vals.pop() * i;
+                    }
+                    vals.push(i);
                 }
-                vals.push(i);
             } else {
                 vals.push(Integer.parseInt(v));
             }
