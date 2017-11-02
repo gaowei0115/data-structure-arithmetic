@@ -71,12 +71,56 @@ public class AutoBinaryTree<T extends Comparable> implements TreeAction<T> {
 
     @Override
     public void insert(T element) {
-
+        insertNode(element, root);
     }
 
     @Override
     public void remove(T element) {
+        removeNode(element, root);
+    }
 
+    /**
+     *
+     * @param element
+     * @param node
+     * @return
+     */
+    private BinaryTreeNode<T> removeNode(T element, BinaryTreeNode<T> node) {
+        if (node == null) {
+            return node;
+        }
+        int compareResult = element.compareTo(node.data);
+        if (compareResult > 0) {
+            node.right = removeNode(element, node.right);
+        } else  if (compareResult < 0) {
+            node.left = removeNode(element, node.left);
+        } else if (node.left != null && node.right != null) {
+            // 存在两个子节点 - 删除
+            node.data = findMin(node.right).data;
+            node.right = removeNode(node.data, node.right);
+        } else {
+            node = (node.left != null) ? node.left : node.right;
+        }
+        return node;
+    }
+
+    /**
+     * 递归插入节点
+     * @param element
+     * @param node
+     * @return
+     */
+    private BinaryTreeNode<T> insertNode(T element, BinaryTreeNode<T> node) {
+        if (node == null) {
+            return new BinaryTreeNode<T>(element, null, null);
+        }
+        int compareResult = element.compareTo(node.data);
+        if (compareResult > 0) {
+            node.right = insertNode(element, node.right);
+        } else if (compareResult < 0) {
+            node.left = insertNode(element, node.left);
+        }
+        return node;
     }
 
 
