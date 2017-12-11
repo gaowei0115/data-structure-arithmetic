@@ -73,7 +73,7 @@ public class TrainSeason36 {
      * 使用循环链表实现
      */
     @Test
-    public void test02() {
+    public void tet02() {
         CycLinkedList<Integer> cyc = new CycLinkedList<Integer>();
         for (int i = 1; i <= 10; i++) {
             cyc.push(i);
