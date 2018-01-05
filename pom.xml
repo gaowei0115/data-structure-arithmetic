@@ -10,6 +10,7 @@
     <modules>
         <module>data-structure-artithmetic-tableStackQueue</module>
         <module>data-structure-arithmetic-tree</module>
+        <module>data-structure-sort</module>
     </modules>
     <packaging>pom</packaging>
 
