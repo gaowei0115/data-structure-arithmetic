@@ -25,8 +25,13 @@ public class Stack6Test {
         System.out.println("原始数据：");
         System.out.print("[");
         while (!queue.isEmpty()) {
-            System.out.print(queue.peek());
+            System.out.print(queue.poll());
             System.out.print(",");
+        }
+        System.out.print("]");
+
+        for (int i = 0; i < 10; i++) {
+            queue.add(i);
         }
 
         Stack<Integer> stack = new Stack<Integer>();
@@ -38,11 +43,14 @@ public class Stack6Test {
             queue.add(stack.pop());
         }
 
+        System.out.println();
+
         System.out.println("转换后数据：");
         System.out.print("[");
         while (!queue.isEmpty()) {
-            System.out.print(queue.peek());
+            System.out.print(queue.poll());
             System.out.print(",");
         }
+        System.out.print("]");
     }
 }
