@@ -35,7 +35,9 @@ public class Stack10Test {
                 if ("+".equals(op)) {
                     sum = Integer.parseInt(vals.poll()) + Integer.parseInt(vals.poll());
                 } else if ("-".equals(op)) {
-                    sum = Integer.parseInt(vals.poll()) - Integer.parseInt(vals.poll());
+                    int a = Integer.parseInt(vals.poll());
+                    int b = Integer.parseInt(vals.poll());
+                    sum = b - a;
                 } else if ("*".equals(op)) {
                     sum = Integer.parseInt(vals.poll()) * Integer.parseInt(vals.poll());
                 } else if ("/".equals(op)) {
