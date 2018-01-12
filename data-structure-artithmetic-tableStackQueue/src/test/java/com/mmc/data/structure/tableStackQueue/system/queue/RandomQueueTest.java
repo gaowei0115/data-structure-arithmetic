@@ -50,4 +50,16 @@ public class RandomQueueTest {
         System.out.println("删除后数据：" + queue);
 
     }
+
+    @Test
+    public void testArray() {
+        Integer[] array = new Integer[10];
+        array[0] = 1;
+        array[1] = 3;
+        System.out.println(array.length);
+
+        for (int i = 0; i < array.length; i++) {
+            System.out.println(array[i]);
+        }
+    }
 }
