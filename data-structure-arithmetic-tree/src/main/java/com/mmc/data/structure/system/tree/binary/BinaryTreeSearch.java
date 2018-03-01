@@ -109,13 +109,15 @@ public class BinaryTreeSearch<T extends Comparable<? super T>> {
             if (node.left != null && node.right != null) {
                 // 要删除节点存在两个子节点
                 // 查找右边节点的最小节点作为要的删除的节点
-                node.value = findMin(node.left).value;
+                node.value = findMin(node.right).value;
                 node.right = remove(node.value, node.right);
             } else {
                 if (node.left != null) {
                     node = node.left;
                 } else if (node.right != null) {
                     node = node.right;
+                } else {
+                    node = null;
                 }
             }
         }
