@@ -11,6 +11,10 @@
         <module>data-structure-artithmetic-tableStackQueue</module>
         <module>data-structure-arithmetic-tree</module>
         <module>data-structure-sort</module>
+        <module>data-structure-arithmetic-sort</module>
+        <module>data-structure-arithmetic-api</module>
+        <module>data-structure-arithmetic-example</module>
+        <module>data-structure-arithmetic-hash</module>
     </modules>
     <packaging>pom</packaging>
 

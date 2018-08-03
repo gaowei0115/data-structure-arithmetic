@@ -52,6 +52,57 @@ public class AVLBinaryTree<T extends Comparable<? super T>> {
         return insertNode(element, root);
     }
 
+
+    /**
+     * 非递归方式保存节点
+     * @param element
+     */
+    public AVLTreeNode<T> insertNodeNorecursion(T element, AVLTreeNode<T> node) {
+        if (node == null) {
+            return new AVLTreeNode<T>(null, null, element);
+        }
+
+        AVLTreeNode<T> newNode = new AVLTreeNode<T>(null, null, element);
+        AVLTreeNode<T> current = node;
+        AVLTreeNode<T> execuNode = null;
+        while (current != null) {
+            T ele = current.element;
+            int result = ele.compareTo(element);
+            if (result > 0) {
+                // 右节点插入
+                if (current.rightNode != null) {
+                    current = current.rightNode;
+                } else {
+                    current.rightNode = newNode;
+                    if (height(node.rightNode) - height(node.leftNode) == 2) {
+                        if (compareNode(element, node.rightNode.element) > 0) {
+                            //
+                            node = rotateWithRightChild(node);
+                        } else {
+                            node = doubleWithRightChild(node);
+                        }
+                    }
+                }
+            } else if (result < 0) {
+                // 左节点插入
+                if (current.leftNode != null) {
+                    current = current.leftNode;
+                } else {
+                    current.leftNode = newNode;
+                }
+            } else {
+                ;
+            }
+        }
+        return node;
+    }
+
+    /**
+     * 插入节点
+     * @param element
+     * @param node
+     * @return
+     */
     private AVLTreeNode<T> insertNode(T element, AVLTreeNode<T> node) {
         if (node == null) {
             return new AVLTreeNode(null, null, element);
@@ -65,11 +116,23 @@ public class AVLBinaryTree<T extends Comparable<? super T>> {
             if (height(node.rightNode) - height(node.leftNode) == 2) {
                 if (compareNode(element, node.rightNode.element) > 0) {
                     //
+                    node = rotateWithRightChild(node);
+                } else {
+                    node = doubleWithRightChild(node);
+                }
+            }
+        } else if (result < 0) {
+            node.leftNode = insertNode(element, node.leftNode);
+
+            if (height(node.leftNode) - height(node.rightNode) == 2) {
+                if (compareNode(element, node.leftNode.element) > 0) {
+                    node = rotateWithLeftChild(node);
+                } else {
+                    node = doubleWithLeftChild(node);
                 }
             }
         }
-
-        return null;
+        return node;
     }
 
     /**
@@ -85,6 +148,42 @@ public class AVLBinaryTree<T extends Comparable<? super T>> {
         rootNode.height = Math.max(height(rootNode.leftNode), height(rootNode.rightNode)) + 1;
         return node;
     }
+
+    /**
+     * 左侧但旋转
+     * @param node
+     * @return
+     */
+    private AVLTreeNode<T> rotateWithLeftChild(AVLTreeNode<T> node) {
+        AVLTreeNode<T> rootNode = node.leftNode;
+        node.leftNode = rootNode.rightNode;
+        rootNode.rightNode = node;
+
+        rootNode.height = Math.max(height(rootNode.leftNode), height(rootNode.rightNode)) + 1;
+        return node;
+
+    }
+
+    /**
+     * 右侧双旋转
+     * @param node
+     * @return
+     */
+    private AVLTreeNode<T> doubleWithRightChild(AVLTreeNode<T> node) {
+        AVLTreeNode<T> t = rotateWithRightChild(node);
+        return rotateWithLeftChild(t);
+    }
+
+    /**
+     * 左侧双旋转
+     * @param node
+     * @return
+     */
+    private AVLTreeNode<T> doubleWithLeftChild(AVLTreeNode<T> node) {
+        AVLTreeNode<T> t = rotateWithLeftChild(node);
+        return rotateWithRightChild(t);
+    }
+
 
     /**
      * 比较两个节点值
