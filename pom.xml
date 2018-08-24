@@ -15,6 +15,7 @@
         <module>data-structure-arithmetic-api</module>
         <module>data-structure-arithmetic-example</module>
         <module>data-structure-arithmetic-hash</module>
+        <module>data-structure-arithmetic-heap</module>
     </modules>
     <packaging>pom</packaging>
 
