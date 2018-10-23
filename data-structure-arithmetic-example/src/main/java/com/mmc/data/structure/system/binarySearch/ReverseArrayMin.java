@@ -26,7 +26,7 @@ package com.mmc.data.structure.system.binarySearch;
 public class ReverseArrayMin {
 
     public static void main(String[] args) {
-        int[] nums = new int[]{4, 5, 7, 10, 16, 1, 2};
+        int[] nums = new int[]{4, 5, 6, 8, 0, 1, 2, 3};
 //        nums = new int[]{4, 5, 1, 2, 3};
 //        nums = new int[]{1, 2, 3};
         int re = findMin(nums);
