@@ -27,7 +27,7 @@ public class FindDuplicate {
 
     public static void main(String[] args) {
         int[] nums = new int[]{1, 3, 4, 2, 2};
-        nums = new int[]{3,1,3,4,2};
+        nums = new int[]{1,2,4,3,1};
 //        nums = new int[]{1,1,3,4,2};
         int re = findDuplicate(nums);
         re = findDoublePointElement(nums);
