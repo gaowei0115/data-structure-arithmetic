@@ -1,0 +1,33 @@
+希尔排序
+    在插入排序的基础上改进，减少比对交换次数
+    希尔排序采用某一个固定增量进行比对，因而希尔排序也叫增量排序。
+
+    如：
+        N个数组进行排序
+
+        选择固定希尔值增量，一般采用 N / 2
+            以N / 2间隔进行查找排序
+
+         原始排序数组 3, 6, 4, 10, 7, 9, 17, 2
+         shell = 4    3, 6, 4, 2, 7, 9, 17, 10
+         shell = 2    3, 2, 4, 6, 7, 9, 17, 10
+         shell = 1    2, 3, 4, 6, 7, 9, 10, 17
+
+
+    代码实现：
+        int size = this.size;
+        T[] elements = this.elements;
+
+        int shell = 0;
+        for (shell = size / 2; shell > 0; shell = shell / 2) {
+            int in = 0;
+            int out = 0;
+            for (out = shell; out < size; out++) {
+                T ele = elements[out];
+                for (in = out; in >= shell && ele.compareTo(elements[in - shell]) < 0; in = in - shell) {
+                    elements[in] = elements[in - shell];
+                }
+                elements[in] = ele;
+            }
+        }
+

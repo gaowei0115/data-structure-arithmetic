@@ -1,0 +1,44 @@
+插入排序：
+    保证部分排序，后续待排序的东西往已排序中插入
+
+    双层循环
+        外层控制选值
+        内层遍历查找外层选值插入位置，保证前半部分有序
+            内层循环采用空位法，每次循环查找需要插入的位置，空余出来插入
+
+    如：有N个值待排序
+        保证0 - P个位置有序， P+1 — N个位置比较插入到 0 — P的位置
+
+
+
+
+    核心代码：
+
+    // 数组
+    T[] elements = new T[length];
+
+    // 数组长度
+    int siza = size;
+
+    public void insertSort() {
+        // 内循环
+        int in;
+        // 外层循环
+        int out;
+        // 外层循环控制要插入值查找
+        for (out = 1; out < size; out++) {
+            // 内层循环 控制查找插入位置
+            // 内层循环查找范围
+            in = out;
+            // 要执行插入元素
+            T ele = elements[out];
+            // 按照倒序
+            while (in > 0 && elements[in - 1].compareTo(ele) > 0) {
+                // 采用空位法，查找合适位置
+                elements[in] = elements[in - 1];
+                in--;
+            }
+            // 根据内层循环找到位置，放入要插入元素
+            elements[in] = ele;
+        }
+    }
