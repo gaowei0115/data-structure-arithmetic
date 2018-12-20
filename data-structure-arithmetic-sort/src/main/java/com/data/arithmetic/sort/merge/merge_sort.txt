@@ -1,0 +1,56 @@
+归并排序
+        分治思想
+        递归操作
+
+        分：排序数组分每次递归划分两部分，对每部分进行递归排序
+
+        治：每个部分排序完事之后在进行合并结果
+
+
+        核心实现思路
+
+        // 数组长度
+        int size = size;
+        // 待排序数组
+        T[] elements = elements;
+
+        public void merge(T[] elements) {
+
+        }
+
+        /**
+        * arrays : 待排序数组
+        * dests : 临时存储数组
+        * left : 左指针
+        * right : 右指针
+        */
+        pubilc void mergeSepSort(T[] arrays, T[] dests, int left, int right) {
+            // 满足左指针小于右指针情况下执行
+            if (left < right) {
+                // 数组划分 -- 取中间位置
+                int center = (left + right) / 2;
+                // 左边排序 -- 递归
+                mergeSepSort(arrays, dests, left, center);
+                // 右边排序 -- 递归
+                mergeSepSort(arrays, dests, center + 1, right);
+
+                // 数组排序结果合并
+
+            }
+        }
+
+        /**
+        * arrays : 待排序数组
+        * dests : 临时存储数组
+        * left : 左指针
+        * center : 中间位置
+        * right : 右指针
+        */
+        public void mergeCureSort(T[] arrays, T[] dests, int left, int center, int right) {
+            int i = left;
+            int j = center + 1;
+            int t = 0;
+            while (i <= center && j <= right) {
+
+            }
+        }
